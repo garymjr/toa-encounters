@@ -21,14 +21,32 @@ class App extends Component {
   }
 
   getEncounter() {
+    const re = /(\d*d\d+\+?\d*)/g;
+
     if (this.state.roll) {
-      const encounter = encounters
+      let encounter = encounters
         .filter(e =>
           e[this.state.location] && e[this.state.location].indexOf(this.state.roll) >= 0
         )[0];
 
         if (encounter) {
-          return <div>{descriptions[encounter.name]}</div>
+          const rolls = descriptions[encounter.name].match(re);
+          const words = descriptions[encounter.name].split(' ');
+
+          return (
+            <div style={{
+              background: '#f7f4d2',
+              border: '2px solid #e2dc93',
+              padding: '5px'
+            }}>
+              {words.map((w, i) => {
+                if (rolls && rolls.indexOf(w) !== -1) {
+                  return <span key={i} style={{ color: '#e5394a', fontWeight: 'bold' }}>{w} </span>;
+                }
+                return <span key={i}>{w} </span>;
+              })}
+            </div>
+          );
         }
         return null;
     }
