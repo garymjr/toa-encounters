@@ -40,7 +40,7 @@ class Encounter extends Component {
       return <div className="Encounter">{text.map(t => [t, ' '])}</div>;
     }
 
-    return <div className="Encounter" />;
+    return <div className="Encounter">Reroll: missing encounter data.</div>;
   }
 }
 
