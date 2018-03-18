@@ -21,26 +21,23 @@ class Encounter extends Component {
     );
 
     if (encounter.length > 0) {
-      const text = descriptions[encounter[0].name].split(' ').map((word, i) => {
-        if (word.match(/\d*d\d+/)) {
-          return (
+      const text = [];
+      const parts = descriptions[encounter[0].name].split(
+        new RegExp(/(\d*d\d+\s\+\s\d+|\d*d\d+)/g)
+      );
+      for (let i = 0; i < parts.length; i++) {
+        if (i === 0 || i % 2 === 0) {
+          text.push(parts[i]);
+        } else {
+          text.push(
             <span key={i} className="dice">
-              {word}
+              {parts[i]}
             </span>
           );
         }
-        return word;
-      });
-      return (
-        <div className="Encounter">
-          {text.map(t => {
-            if (React.isValidElement(t)) {
-              return [t, ' '];
-            }
-            return `${t} `;
-          })}
-        </div>
-      );
+      }
+
+      return <div className="Encounter">{text.map(t => [t, ' '])}</div>;
     }
 
     return <div className="Encounter" />;
