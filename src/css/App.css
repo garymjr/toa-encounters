@@ -1,0 +1,9 @@
+.btn-primary {
+  color: #fff;
+  background-color: #7ca1c9;
+  border-color: #7ca1c9;
+}
+
+.no-radius {
+  border-radius: 0;
+}

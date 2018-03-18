@@ -1,0 +1,13 @@
+.Encounter {
+  background: #fcfcfc;
+  border: 1px solid #d4dce4;
+  font-size: .85rem;
+  height: 250px;
+  padding: 5px;
+  width: 100%;
+}
+
+.Encounter .dice {
+  color: #da6666;
+  font-weight: bold;
+}
